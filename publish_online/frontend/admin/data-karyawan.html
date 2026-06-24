@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Karyawan - Sistem Absensi</title>
+    <!-- Icon Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="app-page admin-karyawan">
+
+    <div class="app-layout">
+        <!-- Sidebar (Desktop) -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <i class="fas fa-fingerprint brand-icon"></i>
+                <span class="brand-text">Absensi<span>Ku</span></span>
+            </div>
+            
+            <div class="user-profile-summary">
+                <div class="avatar-circle">A</div>
+                <div class="profile-info">
+                    <h4 id="user-display-name">Admin</h4>
+                    <span id="user-display-role">Administrator</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu">
+                <a href="/admin/dashboard" class="menu-item">
+                    <i class="fas fa-chart-line"></i> Dashboard
+                </a>
+                <a href="/admin/data-karyawan" class="menu-item active">
+                    <i class="fas fa-users"></i> Data Karyawan
+                </a>
+                <a href="#" id="btn-logout-desktop" class="menu-item logout-link">
+                    <i class="fas fa-sign-out-alt"></i> Keluar
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Wrapper -->
+        <div class="main-wrapper">
+            <!-- Topbar Header -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button id="sidebar-toggle" class="sidebar-toggle-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Kelola Karyawan</h1>
+                </div>
+                <div class="topbar-right">
+                    <span class="current-date-time" id="live-clock">Senin, 22 Juni 2026 | 00:00:00</span>
+                </div>
+            </header>
+
+            <!-- Main Content Container -->
+            <main class="main-content">
+                <!-- Data Karyawan Table Section -->
+                <section class="content-section card">
+                    <div class="section-header">
+                        <h2>Daftar Karyawan</h2>
+                        <button class="btn btn-primary btn-add" id="btn-open-add-modal">
+                            <i class="fas fa-plus"></i> Tambah Karyawan
+                        </button>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="data-table" id="table-karyawan">
+                            <thead>
+                                <tr>
+                                    <th>Nama Lengkap</th>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="4" class="text-center py-8 text-light">Memuat data karyawan...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <!-- Mobile Bottom Nav -->
+        <nav class="mobile-nav">
+            <a href="/admin/dashboard" class="mobile-nav-item">
+                <i class="fas fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="/admin/data-karyawan" class="mobile-nav-item active">
+                <i class="fas fa-users"></i>
+                <span>Karyawan</span>
+            </a>
+            <a href="#" id="btn-logout-mobile" class="mobile-nav-item logout-link">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Keluar</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Modal Add/Edit Karyawan -->
+    <div id="karyawan-modal" class="modal">
+        <div class="modal-content card">
+            <div class="modal-header">
+                <h3 id="modal-title">Tambah Karyawan</h3>
+                <span class="close-modal" id="close-karyawan-modal">&times;</span>
+            </div>
+            
+            <form id="karyawan-form">
+                <!-- Hidden input for ID (in Edit Mode) -->
+                <input type="hidden" id="karyawan-id">
+                
+                <div class="form-group">
+                    <label for="karyawan-nama">Nama Lengkap</label>
+                    <input type="text" id="karyawan-nama" placeholder="Contoh: Budi Santoso" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="karyawan-username">Username</label>
+                    <input type="text" id="karyawan-username" placeholder="Contoh: budis" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="karyawan-email">Email</label>
+                    <input type="email" id="karyawan-email" placeholder="Contoh: budi@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="karyawan-password" id="label-password">Password</label>
+                    <input type="password" id="karyawan-password" placeholder="Masukkan password" required>
+                    <small class="form-help-text" id="help-password" style="display: none;">Biarkan kosong jika tidak ingin mengubah password.</small>
+                </div>
+
+                <div id="modal-error-msg" class="error-message"></div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" id="btn-cancel-modal">Batal</button>
+                    <button type="submit" class="btn btn-primary" id="btn-save-modal">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Custom JS -->
+    <script src="/assets/js/app.js"></script>
+</body>
+</html>

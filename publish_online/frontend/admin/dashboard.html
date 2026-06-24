@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - Sistem Absensi</title>
+    <!-- Icon Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="app-page admin-dashboard">
+
+    <div class="app-layout">
+        <!-- Sidebar (Desktop) -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <i class="fas fa-fingerprint brand-icon"></i>
+                <span class="brand-text">Absensi<span>Ku</span></span>
+            </div>
+            
+            <div class="user-profile-summary">
+                <div class="avatar-circle">A</div>
+                <div class="profile-info">
+                    <h4 id="user-display-name">Admin</h4>
+                    <span id="user-display-role">Administrator</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu">
+                <a href="/admin/dashboard" class="menu-item active">
+                    <i class="fas fa-chart-line"></i> Dashboard
+                </a>
+                <a href="/admin/data-karyawan" class="menu-item">
+                    <i class="fas fa-users"></i> Data Karyawan
+                </a>
+                <a href="#" id="btn-logout-desktop" class="menu-item logout-link">
+                    <i class="fas fa-sign-out-alt"></i> Keluar
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Wrapper -->
+        <div class="main-wrapper">
+            <!-- Topbar Header -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button id="sidebar-toggle" class="sidebar-toggle-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Dashboard</h1>
+                </div>
+                <div class="topbar-right">
+                    <span class="current-date-time" id="live-clock">Senin, 22 Juni 2026 | 00:00:00</span>
+                </div>
+            </header>
+
+            <!-- Main Content Container -->
+            <main class="main-content">
+                <!-- Stats Grid -->
+                <section class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon-wrapper text-blue">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-details">
+                            <span class="stat-label">Total Karyawan</span>
+                            <h3 class="stat-value" id="stat-total-karyawan">0</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon-wrapper text-green">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <div class="stat-details">
+                            <span class="stat-label">Hadir</span>
+                            <h3 class="stat-value" id="stat-hadir">0</h3>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon-wrapper text-yellow">
+                            <i class="fas fa-procedures"></i>
+                        </div>
+                        <div class="stat-details">
+                            <span class="stat-label">Sakit</span>
+                            <h3 class="stat-value" id="stat-sakit">0</h3>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon-wrapper text-orange">
+                            <i class="fas fa-envelope-open-text"></i>
+                        </div>
+                        <div class="stat-details">
+                            <span class="stat-label">Izin</span>
+                            <h3 class="stat-value" id="stat-izin">0</h3>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon-wrapper text-red">
+                            <i class="fas fa-user-times"></i>
+                        </div>
+                        <div class="stat-details">
+                            <span class="stat-label">Alfa (Tanpa Keterangan)</span>
+                            <h3 class="stat-value" id="stat-alfa">0</h3>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Table Logs Section -->
+                <section class="content-section card">
+                    <div class="section-header">
+                        <h2>Log Absensi Hari Ini</h2>
+                        <div class="filter-actions">
+                            <div class="input-group-inline">
+                                <label for="filter-date">Tanggal:</label>
+                                <input type="date" id="filter-date">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="data-table" id="table-logs">
+                            <thead>
+                                <tr>
+                                    <th>Nama Lengkap</th>
+                                    <th>Status</th>
+                                    <th>Jam Masuk</th>
+                                    <th>Foto Masuk</th>
+                                    <th>Jam Keluar</th>
+                                    <th>Foto Keluar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="6" class="text-center py-8 text-light">Memuat log absensi...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <!-- Mobile Bottom Nav -->
+        <nav class="mobile-nav">
+            <a href="/admin/dashboard" class="mobile-nav-item active">
+                <i class="fas fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="/admin/data-karyawan" class="mobile-nav-item">
+                <i class="fas fa-users"></i>
+                <span>Karyawan</span>
+            </a>
+            <a href="#" id="btn-logout-mobile" class="mobile-nav-item logout-link">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Keluar</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Image Viewer Modal (For Attendance Photos) -->
+    <div id="photo-modal" class="modal">
+        <span class="close-modal" id="close-photo-modal">&times;</span>
+        <div class="modal-content-img">
+            <img id="modal-img-element" src="" alt="Detail Foto Absen">
+            <div id="modal-img-caption" class="caption">Detail Absensi</div>
+        </div>
+    </div>
+
+    <!-- Custom JS -->
+    <script src="/assets/js/app.js"></script>
+</body>
+</html>

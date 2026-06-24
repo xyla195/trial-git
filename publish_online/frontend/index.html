@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sistem Absensi</title>
+    <!-- Icon Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="login-page">
+
+    <div class="login-card">
+        <!-- Header Login -->
+        <div class="login-header">
+            <div class="logo-icon">
+                <i class="fas fa-fingerprint"></i>
+            </div>
+            <h1>Selamat Datang</h1>
+            <p>Silakan masuk ke akun Absensi Anda</p>
+        </div>
+
+        <!-- Error Message (Hidden by default) -->
+        <div id="error-msg" class="error-message"></div>
+
+        <!-- Form Login -->
+        <form id="login-form">
+            <div class="form-group">
+                <label for="input-username">Username atau Email</label>
+                <input type="text" id="input-username" placeholder="Masukkan username/email" required>
+            </div>
+            <div class="form-group">
+                <label for="input-password">Password</label>
+                <div class="password-field">
+                    <input type="password" id="input-password" placeholder="Masukkan password" required>
+                    <button type="button" class="password-toggle" id="toggle-password" aria-label="Tampilkan password" aria-pressed="false">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <button type="submit" id="btn-login" class="btn btn-primary">
+                <i class="fas fa-sign-in-alt"></i> Masuk
+            </button>
+        </form>
+
+        <!-- Footer Login -->
+        <div class="login-footer">
+            <a href="#" id="link-lupa-password">Lupa Password?</a>
+        </div>
+    </div>
+
+    <!-- Custom JS -->
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

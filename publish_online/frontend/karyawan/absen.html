@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Absen - Sistem Absensi</title>
+    <!-- Icon Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="app-page karyawan-absen">
+
+    <div class="app-layout">
+        <!-- Sidebar (Desktop) -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <i class="fas fa-fingerprint brand-icon"></i>
+                <span class="brand-text">Absensi<span>Ku</span></span>
+            </div>
+            
+            <div class="user-profile-summary">
+                <div class="avatar-circle" id="karyawan-avatar">K</div>
+                <div class="profile-info">
+                    <h4 id="user-display-name">Karyawan</h4>
+                    <span id="user-display-role">Karyawan</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu">
+                <a href="/karyawan/absen" class="menu-item active">
+                    <i class="fas fa-fingerprint"></i> Absen Masuk/Keluar
+                </a>
+                <a href="/karyawan/riwayat" class="menu-item">
+                    <i class="fas fa-history"></i> Riwayat Absen
+                </a>
+                <a href="#" id="btn-logout-desktop" class="menu-item logout-link">
+                    <i class="fas fa-sign-out-alt"></i> Keluar
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Wrapper -->
+        <div class="main-wrapper">
+            <!-- Topbar Header -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button id="sidebar-toggle" class="sidebar-toggle-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1>Absen Hari Ini</h1>
+                </div>
+                <div class="topbar-right">
+                    <span class="current-date-time" id="live-clock">Senin, 22 Juni 2026 | 00:00:00</span>
+                </div>
+            </header>
+
+            <!-- Main Content Container -->
+            <main class="main-content">
+                <!-- Clock Card -->
+                <div class="clock-display card text-center">
+                    <p class="date-today" id="large-date-string">Senin, 22 Juni 2026</p>
+                    <h2 class="digital-time" id="large-time-string">00:00:00</h2>
+                    <p class="clock-helper-text">Pastikan jam HP/Komputer Anda sesuai waktu asli.</p>
+                </div>
+
+                <!-- Status Card and Check-in Form -->
+                <div class="absen-card-container">
+                    <div class="card p-6" id="status-attendance-card">
+                        <div class="absen-card-header">
+                            <h3>Status Absensi Hari Ini</h3>
+                            <span class="status-badge badge-neutral" id="status-badge-today">Belum Absen</span>
+                        </div>
+                        
+                        <div class="attendance-logs-today mt-4">
+                            <div class="log-row" id="row-log-masuk" style="display: none;">
+                                <div class="log-col">
+                                    <span class="log-label">Absen Masuk</span>
+                                    <strong class="log-time" id="time-masuk">--:--</strong>
+                                </div>
+                                <div class="log-col flex-end">
+                                    <button class="btn btn-outline btn-xs btn-view-photo" id="btn-view-masuk" style="display: none;">
+                                        <i class="fas fa-image"></i> Lihat Foto
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="log-row" id="row-log-keluar" style="display: none;">
+                                <div class="log-col">
+                                    <span class="log-label">Absen Keluar</span>
+                                    <strong class="log-time" id="time-keluar">--:--</strong>
+                                </div>
+                                <div class="log-col flex-end">
+                                    <button class="btn btn-outline btn-xs btn-view-photo" id="btn-view-keluar" style="display: none;">
+                                        <i class="fas fa-image"></i> Lihat Foto
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="absen-actions-wrapper mt-8" id="absen-actions-panel">
+                            <!-- Select Status for Check-in -->
+                            <div id="checkin-status-selector" style="display: none;">
+                                <div class="form-group">
+                                    <label for="select-status">Status Kehadiran</label>
+                                    <select id="select-status" class="form-select">
+                                        <option value="hadir">Hadir (Wajib Selfie)</option>
+                                        <option value="sakit">Sakit (Tanpa Selfie)</option>
+                                        <option value="izin">Izin (Tanpa Selfie)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary" id="btn-submit-masuk" style="display: none;">
+                                <i class="fas fa-sign-in-alt"></i> Absen Masuk
+                            </button>
+                            <button class="btn btn-primary bg-orange" id="btn-submit-keluar" style="display: none;">
+                                <i class="fas fa-sign-out-alt"></i> Absen Keluar
+                            </button>
+                            <div class="success-message text-center p-4" id="msg-absen-complete" style="display: none;">
+                                <i class="fas fa-check-circle text-green font-xl"></i>
+                                <p class="mt-2 text-bold">Absensi Anda hari ini sudah lengkap!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Mobile Bottom Nav -->
+        <nav class="mobile-nav">
+            <a href="/karyawan/absen" class="mobile-nav-item active">
+                <i class="fas fa-fingerprint"></i>
+                <span>Absen</span>
+            </a>
+            <a href="/karyawan/riwayat" class="mobile-nav-item">
+                <i class="fas fa-history"></i>
+                <span>Riwayat</span>
+            </a>
+            <a href="#" id="btn-logout-mobile" class="mobile-nav-item logout-link">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Keluar</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Camera / Selfie Capture Modal -->
+    <div id="camera-modal" class="modal">
+        <div class="modal-content card camera-modal-content">
+            <div class="modal-header">
+                <h3>Ambil Foto Wajah</h3>
+                <span class="close-modal" id="close-camera-modal">&times;</span>
+            </div>
+            
+            <div class="camera-wrapper">
+                <!-- Video Stream -->
+                <video id="webcam-stream" autoplay playsinline></video>
+                <!-- Canvas to draw snap (hidden) -->
+                <canvas id="photo-canvas" style="display: none;"></canvas>
+                <!-- Captured Image Preview -->
+                <img id="captured-preview" src="" alt="Preview Foto" style="display: none;">
+                
+                <div class="camera-placeholder" id="camera-loading">
+                    <i class="fas fa-camera-retro animate-pulse"></i>
+                    <p>Mengaktifkan Kamera...</p>
+                </div>
+            </div>
+
+            <div class="camera-actions">
+                <button class="btn btn-outline" id="btn-retake-photo" style="display: none;">
+                    <i class="fas fa-undo"></i> Ulangi
+                </button>
+                <button class="btn btn-primary" id="btn-capture-photo">
+                    <i class="fas fa-camera"></i> Ambil Foto
+                </button>
+                <button class="btn btn-primary" id="btn-confirm-photo" style="display: none;">
+                    <i class="fas fa-check"></i> Konfirmasi & Kirim
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Viewer Modal (For Attendance Photos) -->
+    <div id="photo-modal" class="modal">
+        <span class="close-modal" id="close-photo-modal">&times;</span>
+        <div class="modal-content-img">
+            <img id="modal-img-element" src="" alt="Detail Foto Absen">
+            <div id="modal-img-caption" class="caption">Detail Absensi</div>
+        </div>
+    </div>
+
+    <!-- Custom JS -->
+    <script src="/assets/js/app.js"></script>
+</body>
+</html>
